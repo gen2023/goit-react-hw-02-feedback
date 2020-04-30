@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,WACE,YAAa,CACb,qBACF","file":"main.7bec28bd.chunk.css","sourcesContent":[".statistic {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n"]}
