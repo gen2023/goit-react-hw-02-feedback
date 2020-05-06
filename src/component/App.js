@@ -12,15 +12,11 @@ const INITIAL_STATE = {
 };
 
 export default class App extends Component {
-  static defaultProps = {};
-
-  static propTypes = {};
-
   state = {
     ...INITIAL_STATE,
   };
 
-  buttonType = type => {
+  handleClick = type => {
     this.setState(state => {
       return { [type]: state[type] + 1 };
     });
@@ -34,27 +30,30 @@ export default class App extends Component {
 
   render() {
     const { good } = this.state;
+    const { neutral } = this.state;
+    const { bad } = this.state;
 
     const total = this.countTotalFeedback();
     const countPositive = this.countPositiveFeedbackPercentage(total, good);
+    const options = Object.keys(this.state);
 
     return (
       <Fragment>
         <Section title="Pleace leave feedback">
           <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={this.buttonType}
+            options={options}
+            onLeaveFeedback={this.handleClick}
           />
         </Section>
-        <Section title="Pleace leave feedback"></Section>
+
         <Section title="Statistics">
           {total === 0 ? (
             <Notification message="No feedback given" />
           ) : (
             <Statistic
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={total}
               positivePercentage={countPositive}
             />
